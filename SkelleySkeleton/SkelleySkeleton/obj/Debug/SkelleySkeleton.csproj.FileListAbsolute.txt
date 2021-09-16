@@ -1,0 +1,12 @@
+C:\Users\Talkashie\Desktop\School\Project Class\SkelleySkeleton\SkelleySkeleton\bin\Debug\SkelleySkeleton.exe.config
+C:\Users\Talkashie\Desktop\School\Project Class\SkelleySkeleton\SkelleySkeleton\bin\Debug\SkelleySkeleton.exe
+C:\Users\Talkashie\Desktop\School\Project Class\SkelleySkeleton\SkelleySkeleton\bin\Debug\SkelleySkeleton.pdb
+C:\Users\Talkashie\Desktop\School\Project Class\SkelleySkeleton\SkelleySkeleton\obj\Debug\SkelleySkeleton.csprojAssemblyReference.cache
+C:\Users\Talkashie\Desktop\School\Project Class\SkelleySkeleton\SkelleySkeleton\obj\Debug\SkelleySkeleton.frmMain.resources
+C:\Users\Talkashie\Desktop\School\Project Class\SkelleySkeleton\SkelleySkeleton\obj\Debug\SkelleySkeleton.Properties.Resources.resources
+C:\Users\Talkashie\Desktop\School\Project Class\SkelleySkeleton\SkelleySkeleton\obj\Debug\SkelleySkeleton.csproj.GenerateResource.cache
+C:\Users\Talkashie\Desktop\School\Project Class\SkelleySkeleton\SkelleySkeleton\obj\Debug\SkelleySkeleton.csproj.CoreCompileInputs.cache
+C:\Users\Talkashie\Desktop\School\Project Class\SkelleySkeleton\SkelleySkeleton\obj\Debug\SkelleySkeleton.exe
+C:\Users\Talkashie\Desktop\School\Project Class\SkelleySkeleton\SkelleySkeleton\obj\Debug\SkelleySkeleton.pdb
+C:\Users\Talkashie\Desktop\School\Project Class\SkelleySkeleton\SkelleySkeleton\obj\Debug\SkelleySkeleton.frmAbout.resources
+C:\Users\Talkashie\Desktop\School\Project Class\SkelleySkeleton\SkelleySkeleton\obj\Debug\SkelleySkeleton.frmProducts.resources

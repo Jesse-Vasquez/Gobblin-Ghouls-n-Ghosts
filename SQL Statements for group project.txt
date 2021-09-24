@@ -1,0 +1,150 @@
+Team Six: Jesse Vasquez, Jozef Gertz, & Shane Kelley
+Date: September 22nd, 2021
+
+These are SQL statements we will use to make the program operate. (Excluding statements used to create database.)
+
+==========================================
+SQL Statement used for filtering the menu
+==========================================
+SELECT * FROM group6fa212330.Products WHERE ProductType = '@ProductType'
+
+A variable is used for ProductType because the user can toggle between other types of food on the menu via comboBox: Salads, Desserts, Entrees, Fried, Chicken, Beef, Kid's Meals, etc. Each one manipulates which query runs.
+
+=============================================
+SQL Statement used for recording transactions
+=============================================
+
+INSERT INTO Transactions(TransactionType, TransactionDate, TransactionAmount, TransactionPickup, CustomerID)
+VALUES(@Type, @Date, @Amount, @Pickup, @ID)
+
+This query is run when the customer confirms their order with our service. The type is either a bulk purchase or a single item, and other information on the order will be specified and the CustomerID will be logged.
+
+==========================================
+SQL Statements used for creating new users
+==========================================
+INSERT INTO Customers(CustomerLastName, CustomerFirstName, CustomerCity, CustomerState, CustomerAddress)
+VALUES(@LastName, @FirstName, @City, @State, @Address);
+
+SELECT TOP(1)CustomerID FROM Customers ORDER BY CustomerID DESC
+
+INSERT INTO OnlineUsers(UserName, UserPassword, UserEmail, CustomerID)
+VALUES(@Username, @Password, @Email, @ID)
+
+On our sign up form, the user fills in information and upon submitting it, the first statement is run to insert their info into the customers table, after that, the second statment grabs the information that was just made, this is to get that user's specific customer ID for the next query, and the last statement inserts the other information the user supplied along with their CustomerID, this is an FK in the OnlineUsers table
+
+==========================================
+SQL Statements used for logging in
+==========================================
+IF (SELECT CustomerID FROM OnlineUsers WHERE UserScreenName = @Username) IS NULL 
+	SELECT * FROM OnlineUsers AS OU JOIN Staff AS S ON OU.StaffID = S.StaffID 
+	WHERE OU.UserScreenName = @Username 
+ELSE 
+	SELECT * FROM OnlineUsers AS OU JOIN Customers AS C ON OU.CustomerID = C.CustomerID 
+	WHERE OU.UserScreenName = @Username
+
+This statement makes use of IF..ELSE along with subqueries. Since both admin and customers sign in using our services, this query determines whether the user signing in is an admin or an ordinary customer by checking if the CustomerID in the OnlineUsers table is null or not.
+
+====================================================
+SQL Statement used for deleting records from tables
+====================================================
+"DELETE FROM " + tableName + " WHERE " + idName + " = '" + id + "'"
+
+To make the code for deleting from the table as efficient as possible, parameters for the table name, the PK ID name, and the actual ID are fed to a method to run this query.
+
+====================================================
+SQL Statement used for inserting records into tables
+====================================================
+string sqlStatement = BASE_QUERY + "INSERT INTO " + tableName + "(";
+
+for (int x = 0; x < columnNames.Count; x++)
+{
+    if (x < columnNames.Count - 1)
+        sqlStatement += columnNames[x] + ", ";
+    else
+        sqlStatement += columnNames[x] + ")VALUES(";
+}
+
+for (int x = 0; x < columnValues.Count; x++)
+{
+    if(columnValues[x].Trim().Equals(""))
+    {
+        columnValues[x] = "NULL";
+
+        if (x < columnNames.Count - 1)
+            sqlStatement += "" + columnValues[x] + ", ";
+        else
+            sqlStatement += "" + columnValues[x] + ")";
+        continue;
+    }
+    if (x < columnNames.Count - 1)
+        sqlStatement += "'" + columnValues[x] + "', ";
+    else
+        sqlStatement += "'" + columnValues[x] + "')";
+}
+
+This statement is built dynamically using template lists that hold the table column names and the values that will be stored into them. 
+
+====================================================
+SQL Statement used for updating records in database
+====================================================
+
+string sqlStatement = BASE_QUERY + "UPDATE " + tableName + " SET ";
+
+for (int x = 0; x < columnNames.Count; x++)
+{
+	//If there is no value in the text box, the value should NULL
+	if (columnValues[x].Trim().Equals(""))
+	{
+	//Make the item at that index NULL
+	columnValues[x] = "NULL";
+
+	//If this is not the last iteration of the for loop, there needs to be a comma
+	//There is no '' for NULL values
+	if (x < columnNames.Count - 1)
+		sqlStatement += columnNames[x] + " = " + " " + columnValues[x] + ", ";
+	else
+		sqlStatement += columnNames[x] + " = " + " " + columnValues[x] + " ";
+
+	//Continue to next element
+	continue;
+}
+
+//If this is not the last iteration of the for loop, there needs to be a comma
+if (x < columnNames.Count - 1)
+sqlStatement += columnNames[x] + " = " + " '" + columnValues[x] + "', ";
+else
+sqlStatement += columnNames[x] + " = " + " '" + columnValues[x] + "' ";
+
+}
+
+sqlStatement += "WHERE " + idName + " = '" + id + "'";
+
+
+Dynamically built using templates like the previous statement, this query will efficiently update whichever table in the database as needed.
+
+====================================================
+SQL Statement used for displaying records
+====================================================
+SELECT * FROM Customers
+SELECT * FROM Deliveries
+SELECT * FROM OnlineUsers
+SELECT * FROM Products
+SELECT * FROM Resupply
+SELECT * FROM Shipments
+SELECT * FROM Staff
+SELECT * FROM Transactions
+
+These statements are run when an administrator is viewing the database via the admin only forms. The CurrencyManager uses the information acquired by these queries to flip between the records using buttons.
+
+
+
+
+
+
+
+
+
+
+
+
+

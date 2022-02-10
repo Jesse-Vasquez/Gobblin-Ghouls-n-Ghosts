@@ -1,0 +1,14 @@
+September 28th
+Skeleton Project
+
+Jesse
+Tables Manipulation Form
+
+Jozef 
+Login Screen / Sign Up Screen
+
+Shane
+Main Menu / About / Products
+
+Think about possible SQL statements
+Database creation statements don't count
